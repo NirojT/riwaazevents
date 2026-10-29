@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   compress: true,
 
-  allowedDevOrigins: ["192.168.1.73"],
+  allowedDevOrigins: ["192.168.1.73", "192.168.1.21"],
 
   images: {
     formats: ["image/avif", "image/webp"],

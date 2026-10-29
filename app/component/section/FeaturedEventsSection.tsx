@@ -74,7 +74,7 @@ export default function FeaturedEventsSection() {
 
           <div className="lg:col-span-5 flex flex-col items-center lg:items-end">
             <div className="w-full max-w-100">
-              <div className="w-full bg-[#faf7f2]/95 backdrop-blur-md rounded-base md:rounded-lg p-5 md:p-6 shadow-2xl border border-white/40 text-charcoal transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+              <div className="w-full bg-[#faf7f2]/95 backdrop-blur-md rounded-sm p-5 md:p-6 shadow-2xl border border-white/40 text-charcoal transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
                 <div className="flex items-center justify-between border-b border-charcoal/10 pb-2.5 mb-2.5">
                   <span className="font-editorial text-[11px] md:text-xs tracking-[0.2em] text-primary uppercase font-normal">
                     {currentSlide.tag}
@@ -108,7 +108,7 @@ export default function FeaturedEventsSection() {
                   {currentSlide.thumbnails.map((thumb, idx) => (
                     <div
                       key={`${currentSlide.id}-thumb-${idx}`}
-                      className="relative aspect-square rounded-md overflow-hidden border border-charcoal/10 bg-charcoal/5 group/thumb"
+                      className="relative aspect-square rounded-sm overflow-hidden border border-charcoal/10 bg-charcoal/5 group/thumb"
                     >
                       <Image
                         src={thumb}

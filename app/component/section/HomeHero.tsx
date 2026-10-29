@@ -187,7 +187,7 @@ export default function HomeHero() {
             <MagneticButton strength={0.18}>
               <Link
                 href="/contact"
-                className="w-full sm:w-auto text-center inline-flex items-center justify-center font-sans text-xs md:text-sm font-medium tracking-[0.16em] bg-primary text-white-text hover:bg-gold-light active:scale-[0.99] transition-all duration-300 py-3.5 px-7 select-none cursor-pointer"
+                className="w-full sm:w-auto text-center inline-flex items-center justify-center font-sans text-xs md:text-sm font-medium tracking-[0.16em] bg-linear-to-b from-[#d5c096]/90 via-[#b69a6a]/85 to-[#967d52]/90 hover:from-[#dfceab]/95 hover:via-[#c4a979]/90 hover:to-[#a3895c]/95 text-white backdrop-blur-xl border border-white/35 hover:border-white/60 shadow-[inset_0_1px_1px_rgba(255,255,255,0.45),0_8px_24px_-4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.65),0_12px_28px_rgba(182,154,106,0.35)] rounded-sm active:scale-[0.98] transition-all duration-300 py-3.5 px-7 select-none cursor-pointer"
               >
                 Book Appointment
               </Link>
@@ -196,7 +196,7 @@ export default function HomeHero() {
             <MagneticButton strength={0.18}>
               <Link
                 href="/contact"
-                className="w-full sm:w-auto text-center inline-flex items-center justify-center font-sans text-xs md:text-sm font-medium tracking-[0.16em] border border-white-text/60 text-white-text hover:bg-white-text hover:text-charcoal active:scale-[0.99] transition-all duration-300 py-3.5 px-7 select-none cursor-pointer"
+                className="w-full sm:w-auto text-center inline-flex items-center justify-center font-sans text-xs md:text-sm font-medium tracking-[0.16em] bg-white/8 hover:bg-white/18 text-white-text backdrop-blur-xl border border-white/25 hover:border-white/50 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_8px_24px_-4px_rgba(0,0,0,0.25)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.5),0_12px_28px_rgba(0,0,0,0.35)] rounded-sm active:scale-[0.98] transition-all duration-300 py-3.5 px-7 select-none cursor-pointer"
               >
                 Plan your event
               </Link>

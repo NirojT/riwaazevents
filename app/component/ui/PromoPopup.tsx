@@ -73,13 +73,13 @@ export default function PromoPopup() {
       onClick={handleClose}
     >
       <div
-        className="relative max-w-sm sm:max-w-md md:max-w-lg w-full bg-[#160406] rounded-2xl overflow-hidden shadow-2xl border border-gold/40 transition-all duration-300 transform scale-100"
+        className="relative max-w-sm sm:max-w-md md:max-w-lg w-full bg-[#160406]/95 backdrop-blur-2xl rounded-sm overflow-hidden shadow-2xl border border-gold/40 transition-all duration-300 transform scale-100"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={handleClose}
           aria-label="Close popup"
-          className="absolute top-3 right-3 z-30 p-2 rounded-full bg-black/75 hover:bg-black text-white hover:text-gold border border-white/20 hover:border-gold/60 transition-all duration-200 cursor-pointer shadow-lg active:scale-90 focus:outline-none"
+          className="absolute top-3 right-3 z-30 p-2 rounded-sm bg-black/60 hover:bg-black/85 backdrop-blur-xl text-white hover:text-gold border border-white/25 hover:border-gold/60 shadow-[inset_0_1px_1px_rgba(255,255,255,0.25)] transition-all duration-200 cursor-pointer active:scale-90 focus:outline-none"
         >
           <X className="w-5 h-5" />
         </button>

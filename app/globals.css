@@ -38,6 +38,25 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Lenis smooth scroll: let <html> grow with the page so Lenis sees height changes
+   (the h-full on <html> otherwise freezes its scroll limit mid-page) */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
 /* Typography hierarchy: Cormorant Garamond Semibold for headings, Medium for descriptions */
 h1,
 h2,

@@ -49,14 +49,14 @@ export default function CTASection() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4.5 w-full sm:w-auto">
             <Link
               href={ctaData.primaryButton.href}
-              className="w-full sm:w-auto px-7 sm:px-8 py-3 sm:py-3.5 bg-gold hover:bg-[#a68a5a] text-white-text font-editorial text-sm sm:text-base tracking-wider transition-all duration-300 shadow-lg text-center cursor-pointer active:scale-95"
+              className="w-full sm:w-auto px-7 sm:px-8 py-3.5 bg-linear-to-b from-[#d5c096]/90 via-[#b69a6a]/85 to-[#967d52]/90 hover:from-[#dfceab]/95 hover:via-[#c4a979]/90 hover:to-[#a3895c]/95 text-white backdrop-blur-xl border border-white/35 hover:border-white/60 shadow-[inset_0_1px_1px_rgba(255,255,255,0.45),0_8px_24px_-4px_rgba(0,0,0,0.35)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.65),0_12px_28px_rgba(182,154,106,0.35)] rounded-sm font-editorial text-sm sm:text-base tracking-wider transition-all duration-300 text-center cursor-pointer active:scale-[0.98]"
             >
               {ctaData.primaryButton.label}
             </Link>
 
             <Link
               href={ctaData.secondaryButton.href}
-              className="w-full sm:w-auto px-7 sm:px-8 py-3 sm:py-3.5 border border-white/60 hover:border-white hover:bg-white/10 text-white-text font-editorial text-sm sm:text-base tracking-wider transition-all duration-300 text-center cursor-pointer active:scale-95"
+              className="w-full sm:w-auto px-7 sm:px-8 py-3.5 bg-white/8 hover:bg-white/18 text-white-text backdrop-blur-xl border border-white/25 hover:border-white/50 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_8px_24px_-4px_rgba(0,0,0,0.25)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.5),0_12px_28px_rgba(0,0,0,0.35)] rounded-sm font-editorial text-sm sm:text-base tracking-wider transition-all duration-300 text-center cursor-pointer active:scale-[0.98]"
             >
               {ctaData.secondaryButton.label}
             </Link>

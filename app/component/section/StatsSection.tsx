@@ -120,7 +120,7 @@ export default function StatsSection({
           {stats.map((stat) => (
             <div
               key={stat.id}
-              className={`stat-card group flex flex-col justify-between p-8 sm:p-9 min-h-60 sm:min-h-67.5 bg-[#f5efe6] rounded-2xl border border-charcoal/5 shadow-[0_12px_36px_-18px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_45px_-15px_rgba(0,0,0,0.1)] transition-all duration-500 ease-out hover:-translate-y-1.5 ${
+              className={`stat-card group flex flex-col justify-between p-8 sm:p-9 min-h-60 sm:min-h-67.5 bg-[#f5efe6] rounded-sm border border-charcoal/5 shadow-[0_12px_36px_-18px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_45px_-15px_rgba(0,0,0,0.1)] transition-all duration-500 ease-out hover:-translate-y-1.5 ${
                 stat.offset ? "lg:mt-10 xl:mt-12" : ""
               }`}
             >

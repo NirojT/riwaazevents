@@ -1,16 +1,26 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
 import Logo from "../ui/Logo";
 import { footerData } from "../../data/footer";
+import { socialLinks, telHref } from "../../data/site-config";
+import { useSite } from "../../lib/site-context";
 import { isReducedMotion } from "../animation";
+
+/** How many services the footer lists before "All services". */
+const FOOTER_SERVICES = 5;
 
 export default function Footer() {
   const footerRef = useRef<HTMLElement | null>(null);
+  const settings = useSite((st) => st.settings);
+  // The first few services, in the office's order — the column stays a short list.
+  const services = useSite((st) => st.services);
+  const year = useSite((st) => st.year);
+  const footerServices = services.slice(0, FOOTER_SERVICES);
 
   useEffect(() => {
     const el = footerRef.current;
@@ -54,17 +64,17 @@ export default function Footer() {
             <Logo theme="dark" size="lg" />
 
             <p className="font-editorial italic text-lg md:text-xl text-gold-light/90 font-normal leading-relaxed max-w-sm">
-              {footerData.tagline}
+              {settings.tagline}
             </p>
 
             <div className="flex flex-wrap items-center gap-6 pt-2">
-              {footerData.socials.map((social) => (
+              {socialLinks(settings).map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-sans text-xs uppercase tracking-[0.2em] text-white-text/60 hover:text-primary transition-colors duration-200"
+                  className="font-body text-xs uppercase tracking-[0.2em] text-white-text/60 hover:text-gold transition-colors duration-200"
                 >
                   {social.label}
                 </a>
@@ -73,7 +83,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-col md:col-span-2 md:pl-2 will-change-transform">
-            <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.24em] text-primary mb-5">
+            <h3 className="font-body text-xs font-semibold uppercase tracking-[0.24em] text-gold mb-5">
               MENU
             </h3>
             <ul className="space-y-3">
@@ -81,7 +91,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="font-sans text-xs md:text-sm text-white-text/75 hover:text-primary transition-colors duration-200 inline-block"
+                    className="font-body text-xs md:text-sm text-white-text/75 hover:text-gold transition-colors duration-200 inline-block"
                   >
                     {link.label}
                   </Link>
@@ -91,57 +101,72 @@ export default function Footer() {
           </div>
 
           <div className="footer-col md:col-span-3 md:pl-2 will-change-transform">
-            <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.24em] text-primary mb-5">
+            <h3 className="font-body text-xs font-semibold uppercase tracking-[0.24em] text-gold mb-5">
               SERVICES
             </h3>
             <ul className="space-y-3">
-              {footerData.servicesLinks.map((service) => (
-                <li key={service.label}>
+              {footerServices.map((service) => (
+                <li key={service.id}>
                   <Link
-                    href={service.href}
-                    className="font-sans text-xs md:text-sm text-white-text/75 hover:text-primary transition-colors duration-200 inline-block"
+                    href={`/services#${service.id}`}
+                    className="font-body text-xs md:text-sm text-white-text/75 hover:text-gold transition-colors duration-200 inline-block"
                   >
-                    {service.label}
+                    {service.title}
                   </Link>
                 </li>
               ))}
+              {services.length > FOOTER_SERVICES && (
+                <li>
+                  <Link
+                    href="/services"
+                    className="font-body text-xs md:text-sm text-gold/90 hover:text-gold transition-colors duration-200 inline-block"
+                  >
+                    All services →
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
 
           <div className="footer-col md:col-span-3 md:pl-2 will-change-transform">
-            <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.24em] text-primary mb-5">
+            <h3 className="font-body text-xs font-semibold uppercase tracking-[0.24em] text-gold mb-5">
               CONTACT
             </h3>
-            <div className="space-y-3 font-sans text-xs md:text-sm text-white-text/75">
+            <div className="space-y-3 font-body text-xs md:text-sm text-white-text/75">
               <div>
                 <a
-                  href={`mailto:${footerData.contact.email}`}
-                  className="hover:text-primary transition-colors duration-200 block"
+                  href={`mailto:${settings.email}`}
+                  className="hover:text-gold transition-colors duration-200 block"
                 >
-                  {footerData.contact.email}
+                  {settings.email}
                 </a>
               </div>
               <div>
                 <a
-                  href={`tel:${footerData.contact.phone.replace(/\s+/g, "")}`}
-                  className="hover:text-primary transition-colors duration-200 block"
+                  href={telHref(settings.phone)}
+                  className="hover:text-gold transition-colors duration-200 block"
                 >
-                  {footerData.contact.phone}
+                  {settings.phone}
                 </a>
               </div>
               <div className="text-white-text/60">
-                {footerData.contact.studio}
+                {settings.address}
               </div>
               <div className="text-white-text/60">
-                {footerData.contact.hours}
+                {settings.hours}
               </div>
             </div>
           </div>
         </div>
 
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] md:text-xs tracking-[0.2em] uppercase text-white-text/50 font-sans">
-          <p>{footerData.bottomBar.copyright}</p>
-          <p>{footerData.bottomBar.location}</p>
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] md:text-xs tracking-[0.2em] uppercase text-white-text/50 font-body">
+          <p>© {year} {footerData.bottomBar.copyright}</p>
+          <div className="flex items-center gap-6">
+            <p>{footerData.bottomBar.location}</p>
+            <Link href="/sign-in" className="text-white-text/30 hover:text-gold transition-colors duration-200">
+              Staff login
+            </Link>
+          </div>
         </div>
       </Container>
     </footer>

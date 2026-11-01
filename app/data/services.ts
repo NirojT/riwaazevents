@@ -26,7 +26,7 @@ export const servicesData: ServicesSectionData = {
       number: "01",
       heading: "Planning",
       shortDescription: "We plan the details that bring your event together.",
-      image: "/assets/s1/s1.webp",
+      image: "/site/assets/s1/s1.webp",
     },
     {
       id: "venue",
@@ -34,21 +34,21 @@ export const servicesData: ServicesSectionData = {
       heading: "Venue",
       shortDescription:
         "We help find and prepare the right space for your event.",
-      image: "/assets/s1/s2.webp",
+      image: "/site/assets/s1/s2.webp",
     },
     {
       id: "decor-styling",
       number: "03",
       heading: "Décor & Styling",
       shortDescription: "We transform the space to match your vision.",
-      image: "/assets/s1/s3.webp",
+      image: "/site/assets/s1/s3.webp",
     },
     {
       id: "food-hospitality",
       number: "04",
       heading: "Food & Hospitality",
       shortDescription: "We take care of food, service, and guest comfort.",
-      image: "/assets/s1/s4.webp",
+      image: "/site/assets/s1/s4.webp",
     },
     {
       id: "entertainment",
@@ -56,14 +56,14 @@ export const servicesData: ServicesSectionData = {
       heading: "Entertainment",
       shortDescription:
         "Music, performances, and experiences that keep the celebration alive.",
-      image: "/assets/s1/s1.webp",
+      image: "/site/assets/s1/s1.webp",
     },
     {
       id: "guest-management",
       number: "06",
       heading: "Guest Management",
       shortDescription: "We make sure your guests are welcomed and looked after.",
-      image: "/assets/s1/s2.webp",
+      image: "/site/assets/s1/s2.webp",
     },
     {
       id: "event-coordination",
@@ -71,7 +71,7 @@ export const servicesData: ServicesSectionData = {
       heading: "Event Coordination",
       shortDescription:
         "We manage everything on the day so it all runs smoothly.",
-      image: "/assets/s1/s3.webp",
+      image: "/site/assets/s1/s3.webp",
     },
   ],
 };

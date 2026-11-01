@@ -1,9 +1,7 @@
-export { default as SmoothScrollProvider, useSmoothScroll } from "./SmoothScrollProvider";
+export { default as SmoothScrollProvider } from "./SmoothScrollProvider";
 export { default as RevealText } from "./RevealText";
 export { default as RevealImage } from "./RevealImage";
-export { default as ParallaxImage } from "./ParallaxImage";
 export { default as FadeUp } from "./FadeUp";
-export { default as StaggerContainer } from "./StaggerContainer";
 export { default as MagneticButton } from "./MagneticButton";
 export { default as CustomCursor } from "./CustomCursor";
 export { default as PageTransition } from "./PageTransition";

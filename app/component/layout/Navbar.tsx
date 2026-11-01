@@ -9,12 +9,15 @@ import Logo from "../ui/Logo";
 import Button from "../ui/Button";
 import Container from "../ui/Container";
 import { navigationData } from "../../data/navigation";
+import { telHref } from "../../data/site-config";
+import { useSite } from "../../lib/site-context";
 import { MagneticButton, isReducedMotion } from "../animation";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const settings = useSite((st) => st.settings);
   const headerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -86,14 +89,14 @@ export default function Navbar() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className={`relative font-sans text-xs font-medium tracking-[0.22em] transition-colors duration-200 py-1 ${isActive
-                    ? "text-primary font-medium"
-                    : "text-white-text/85 hover:text-primary"
+                  className={`relative font-body text-xs font-medium tracking-[0.22em] transition-colors duration-200 py-1 ${isActive
+                    ? "text-gold font-medium"
+                    : "text-white-text/85 hover:text-gold"
                     }`}
                 >
                   {link.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-primary" />
+                    <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gold" />
                   )}
                 </Link>
               );
@@ -102,7 +105,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-2.5 sm:gap-3 lg:gap-4">
             <a
-              href={navigationData.location.href}
+              href={settings.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
               title={navigationData.location.label}
@@ -156,7 +159,7 @@ export default function Navbar() {
             <Logo size="sm" />
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="p-2 rounded-full text-white-text hover:text-primary hover:bg-white-text/10 transition-colors focus:outline-none"
+              className="p-2 rounded-full text-white-text hover:text-gold hover:bg-white-text/10 transition-colors focus:outline-none"
               aria-label="Close menu"
             >
               <X className="h-6 w-6" />
@@ -171,12 +174,12 @@ export default function Navbar() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`font-sans text-sm sm:text-base font-medium tracking-[0.2em] py-3.5 border-b border-white-text/10 transition-all flex items-center justify-between group ${isActive ? "text-primary font-semibold" : "text-white-text hover:text-primary"
+                  className={`font-body text-sm sm:text-base font-medium tracking-[0.2em] py-3.5 border-b border-white-text/10 transition-all flex items-center justify-between group ${isActive ? "text-gold font-semibold" : "text-white-text hover:text-gold"
                     }`}
                 >
                   <span>{link.label}</span>
                   <ArrowRight
-                    className={`h-4 w-4 transition-transform group-hover:translate-x-1 ${isActive ? "text-primary" : "text-primary/70"
+                    className={`h-4 w-4 transition-transform group-hover:translate-x-1 ${isActive ? "text-gold" : "text-gold/70"
                       }`}
                   />
                 </Link>
@@ -198,20 +201,20 @@ export default function Navbar() {
 
             <div className="text-xs text-white-text/75 space-y-2.5">
               <a
-                href={navigationData.location.href}
+                href={settings.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 hover:text-primary transition-colors group"
+                className="flex items-center gap-2.5 hover:text-gold transition-colors group"
               >
-                <MapPin className="h-3.5 w-3.5 text-primary shrink-0 transition-transform group-hover:scale-110" />
-                <span className="tracking-wider">Itahari, Nepal (Find on Maps)</span>
+                <MapPin className="h-3.5 w-3.5 text-gold shrink-0 transition-transform group-hover:scale-110" />
+                <span className="tracking-wider">{settings.address} (Find on Maps)</span>
               </a>
               <a
-                href="tel:+9779804060401"
-                className="flex items-center gap-2.5 hover:text-primary transition-colors"
+                href={telHref(settings.phone)}
+                className="flex items-center gap-2.5 hover:text-gold transition-colors"
               >
-                <Phone className="h-3.5 w-3.5 text-primary shrink-0" />
-                <span className="tracking-wider">+977 9804060401</span>
+                <Phone className="h-3.5 w-3.5 text-gold shrink-0" />
+                <span className="tracking-wider">{settings.phone}</span>
               </a>
             </div>
           </div>

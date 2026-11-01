@@ -1,6 +1,5 @@
 export { default as AboutHero } from "./AboutHero";
 export { default as AboutStorySection } from "./AboutStorySection";
-export { default as ContactHero } from "./ContactHero";
 export { default as ContactSection } from "./ContactSection";
 export { default as EventHero } from "./EventHero";
 export { default as EventTicker } from "./EventTicker";

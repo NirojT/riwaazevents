@@ -1,6 +1,11 @@
+/**
+ * The Services page's list. The office edits it in Admin › Website; this is only the copy the
+ * page starts with (and keeps, if the server cannot be reached), and it matches what the backend
+ * seeds (WebsiteSeeder), so the first paint does not flip. A service's number on the page is its
+ * position, and its anchor (/services#wedding) is its title's slug.
+ */
 export interface ServiceListItem {
   id: string;
-  number: string;
   title: string;
   description: string;
   tags: string[];
@@ -12,157 +17,97 @@ export interface ServicesListData {
   services: ServiceListItem[];
 }
 
+/** "Tents & Catering" → "tents-catering". */
+export const serviceSlug = (title: string) =>
+  title
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+const service = (title: string, description: string, tags: string[], image: string): ServiceListItem => ({
+  id: serviceSlug(title),
+  title,
+  description,
+  tags,
+  image,
+  imageAlt: title,
+});
+
 export const servicesListData: ServicesListData = {
   services: [
-    {
-      id: "wedding-planning",
-      number: "01",
-      title: "Wedding Planning",
-      description:
-        "From the first initial vision to the final send-off, we design and manage the entire wedding journey: timeline creation, vendor curation, budgets, and seamless day-of coordination.",
-      tags: [
-        "Full Wedding Weekend",
-        "Destination Weddings",
-        "Budget & Timeline Control",
-        "Vendor & Venue Coordination",
-      ],
-      image: "/assets/services/service-mandap.webp",
-      imageAlt: "Royal traditional red floral mandap wedding setup by Riwaaj Events",
-    },
-    {
-      id: "event-design-styling",
-      number: "02",
-      title: "Event Design and Styling",
-      description:
-        "Transforming raw venues into immersive worlds of art. We design the mood, palette, textures, bespoke backdrops, and signature decor elements unique to your love story.",
-      tags: [
-        "Bespoke Theme Concepts",
-        "Spatial Floor Plans",
-        "Fabric Draping & Linens",
-        "Personalized Accent Details",
-      ],
-      image: "/assets/story-bouquet.webp",
-      imageAlt: "Bespoke bridal styling and floral aesthetics",
-    },
-    {
-      id: "venue-tent-design",
-      number: "03",
-      title: "Venue & Tent Design",
-      description:
-        "Creating breathtaking custom marquees, clear-span canopies, and architectural structures in open lawns, private estates, and remote destinations across Nepal.",
-      tags: [
-        "Sailcloth Marquees",
-        "Outdoor Estate Prep",
-        "Climate & Flooring Control",
-        "Stage & Structural Framing",
-      ],
-      image: "/assets/bts/bts-4.webp",
-      imageAlt: "Luxury sailcloth marquee tent in meadow",
-    },
-    {
-      id: "floral-design",
-      number: "04",
-      title: "Floral Design",
-      description:
-        "Artisanal botanical installations that breathe life into every corner: majestic ceremonial arches, suspended floral clouds, cascading centerpieces, and bridal blooms.",
-      tags: [
-        "Suspended Floral Ceilings",
-        "Mandap & Altar Installations",
-        "Hand-Tied Bridal Bouquets",
-        "Table Scapes & Centerpieces",
-      ],
-      image: "/assets/story-florist.webp",
-      imageAlt: "Luxury floral arrangements and grand ceremonial arch decor",
-    },
-    {
-      id: "catering-coordination",
-      number: "05",
-      title: "Catering Coordination",
-      description:
-        "Curation of multi-course gastronomic journeys honoring authentic traditional regional recipes and sophisticated international cuisines with five-star hospitality.",
-      tags: [
-        "Menu Curation & Tasting",
-        "Live Culinary Counters",
-        "Banquet Table Service",
-        "Dessert & Beverage Styling",
-      ],
-      image: "/assets/story-culinary.webp",
-      imageAlt: "Artisanal culinary preparation and banquet plating",
-    },
-    {
-      id: "entertainment",
-      number: "06",
-      title: "Entertainment",
-      description:
-        "Curating unforgettable live performances, soundscapes, and celebratory moments: live acoustic ensembles, traditional folk artists, DJs, and celebratory send-offs.",
-      tags: [
-        "Live Bands & Artists",
-        "DJ & Dancefloor Production",
-        "Traditional Folk Performers",
-        "Sparkler & Special Effects",
-      ],
-      image: "/assets/bts/bts-2.webp",
-      imageAlt: "Nighttime wedding celebration with sparklers",
-    },
-    {
-      id: "lighting-production",
-      number: "07",
-      title: "Lighting & Production",
-      description:
-        "Engineering emotional atmosphere through architectural illumination, grand vintage crystal chandeliers, warm pin-spotting, ambient mood washes, and concert-grade sound.",
-      tags: [
-        "Crystal Chandelier Arrays",
-        "Intelligent Stage Lighting",
-        "Ambient Fairy & Festoon Lights",
-        "Concert Grade Audio Production",
-      ],
-      image: "/assets/services/service-chandelier.webp",
-      imageAlt: "Grand antique crystal chandelier illumination",
-    },
-    {
-      id: "guest-management",
-      number: "08",
-      title: "Guest Management",
-      description:
-        "Gracious Nepali hospitality ensuring every attendee is warmly cared for: airport pickups, personalized welcome hampers, RSVP tracking, and on-ground concierge desks.",
-      tags: [
-        "RSVP & Invitation Tracking",
-        "VIP Concierge Services",
-        "Hospitality Desk & Check-in",
-        "Custom Welcome Hampers",
-      ],
-      image: "/assets/services/service-candelabra.webp",
-      imageAlt: "Outdoor wedding guest tables with candelabras and luxury setting",
-    },
-    {
-      id: "destination-weddings",
-      number: "09",
-      title: "Destination Weddings",
-      description:
-        "From the lakeside palaces of Pokhara to historic durbar courtyards of Kathmandu and luxury mountain resorts, we handle all destination travel and celebrations.",
-      tags: [
-        "Destination Scouting",
-        "Guest Travel & Hotel Blocks",
-        "Multi-Day Itinerary Design",
-        "Remote Site Infrastructure",
-      ],
-      image: "/assets/idontknow.webp",
-      imageAlt: "Destination lakeside evening celebration by Riwaaj Events",
-    },
-    {
-      id: "post-event-services",
-      number: "10",
-      title: "Post-Event Services & Wrap-up",
-      description:
-        "Our commitment continues until the last detail is completed: efficient venue breakdown, heirloom floral preservation, vendor settlement, and photo deliverable coordination.",
-      tags: [
-        "Eco-Conscious Teardown",
-        "Floral Gifting & Repurposing",
-        "Vendor Closure & Billing",
-        "Memories & Media Follow-up",
-      ],
-      image: "/assets/celebration/step-concept-planning-clean.webp",
-      imageAlt: "Detailed event styling and final closure",
-    },
+    service(
+      "Wedding",
+      "From the first meeting to the final farewell, we plan and run the whole wedding — rituals, venue, décor, food, guests and the day's timeline — so your family can be present for every moment.",
+      ["Full Wedding Planning", "Rituals & Timeline", "Venue & Vendor Coordination", "Day-of Management"],
+      "/site/assets/services/service-mandap.webp"
+    ),
+    service(
+      "Engagement",
+      "Ring ceremonies and sagai styled to your families' traditions — a stage that frames the moment, warm hospitality for both sides, and a programme that runs on time.",
+      ["Ring Ceremony & Sagai", "Stage & Backdrop", "Guest Hospitality"],
+      "/site/assets/events/e5.webp"
+    ),
+    service(
+      "Anniversary",
+      "Silver, golden or simply the next one — an intimate dinner or a full family gathering, designed around your story together.",
+      ["Intimate Dinners", "Family Gatherings", "Themed Décor", "Surprise Planning"],
+      "/site/assets/services/service-candelabra.webp"
+    ),
+    service(
+      "Birthday",
+      "Birthdays for every age, from a first birthday to a sixtieth — themed décor, the cake table, entertainment and food, all handled.",
+      ["Themed Décor", "Kids' Parties", "Milestone Birthdays", "Entertainment"],
+      "/site/assets/events/e3.webp"
+    ),
+    service(
+      "Weaning Ceremony",
+      "Pasni — your child's first rice feeding — celebrated with the rituals done right, a traditional setup and a feast for the whole family.",
+      ["Pasni / Annaprashan", "Puja & Ritual Setup", "Family Feast"],
+      "/site/assets/celebration/step-concept-planning-clean.webp"
+    ),
+    service(
+      "Decoration",
+      "Stage, mandap, entrance, flowers and lights — décor designed for your venue and theme, set up and taken down by our own team.",
+      ["Stage & Mandap", "Floral Décor", "Entrance & Walkways", "Theme Styling"],
+      "/site/assets/story-florist.webp"
+    ),
+    service(
+      "Tents & Catering",
+      "Tents and pandals for any ground, with seating, flooring and lighting — and catering from snacks to full multi-cuisine menus.",
+      ["Tents & Pandals", "Seating & Flooring", "Catering & Menus", "Buffet Service"],
+      "/site/assets/bts/bts-4.webp"
+    ),
+    service(
+      "Photography & Videography",
+      "Photos and films that keep the day — candid and traditional photography, cinematic video, and albums to hand down.",
+      ["Candid Photography", "Traditional Coverage", "Cinematic Video", "Albums"],
+      "/site/assets/events/e1.webp"
+    ),
+    service(
+      "Makeup & Mehendi Artist",
+      "Bridal and party makeup, hair, and mehendi artists for the bride, the family and the guests.",
+      ["Bridal Makeup", "Party Makeup", "Hairstyling", "Mehendi"],
+      "/site/assets/story-bouquet.webp"
+    ),
+    service(
+      "Sound System Design & Lights Arrangement",
+      "Sound and light planned for the space — clear sound for rituals and speeches, a full system for the dance floor, and lights that set the mood.",
+      ["Sound System", "Stage Lighting", "DJ Setup", "Ambient Lighting"],
+      "/site/assets/services/service-chandelier.webp"
+    ),
+    service(
+      "Concerts & Shows Management",
+      "Concerts, cultural programmes and live shows managed end to end — stage, sound and lights, entry and crowd flow, artists and the show schedule.",
+      ["Stage & Production", "Entry & Crowd Flow", "Show Scheduling", "Backstage Coordination"],
+      "/site/assets/bts/bts-2.webp"
+    ),
+    service(
+      "Artist Management",
+      "Singers, bands, dancers, DJs and hosts booked for your event — we look after the booking, the schedule and the timing on stage.",
+      ["Singers & Bands", "Dancers", "DJs & Hosts", "Booking & Scheduling"],
+      "/site/assets/idontknow.webp"
+    ),
   ],
 };

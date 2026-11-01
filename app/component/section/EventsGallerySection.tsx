@@ -1,10 +1,15 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import Image from "next/image";
-import { eventsGalleryData, EventGalleryItem } from "../../data/eventsGallery";
+import Image from "../ui/Image";
+import { eventsGalleryData, type EventGalleryItem } from "../../data/eventsGallery";
+import { useSite } from "../../lib/site-context";
 
 export default function EventsGallerySection() {
+  // Designs ticked "Show on website" in the admin; the bundled showcase until there is one.
+  const liveGallery = useSite((s) => s.gallery);
+  const gallery = liveGallery ?? eventsGalleryData;
+
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [selectedEvent, setSelectedEvent] = useState<EventGalleryItem | null>(null);
   const [activePhotoIndex, setActivePhotoIndex] = useState<number>(0);
@@ -12,13 +17,13 @@ export default function EventsGallerySection() {
   // Filter items based on active category
   const filteredItems =
     activeCategory === "all"
-      ? eventsGalleryData.items
-      : eventsGalleryData.items.filter((item) => item.category === activeCategory);
+      ? gallery.items
+      : gallery.items.filter((item) => item.category === activeCategory);
 
   // Calculate counts for each category
   const getCategoryCount = (catValue: string) => {
-    if (catValue === "all") return eventsGalleryData.items.length;
-    return eventsGalleryData.items.filter((item) => item.category === catValue).length;
+    if (catValue === "all") return gallery.items.length;
+    return gallery.items.filter((item) => item.category === catValue).length;
   };
 
   const eventImages = selectedEvent
@@ -81,10 +86,10 @@ export default function EventsGallerySection() {
   };
 
   return (
-    <section className="relative py-16 sm:py-24 bg-ivory text-stone-800">
+    <section className="relative py-16 sm:py-24 bg-ivory text-charcoal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap items-center gap-6 sm:gap-8 pb-6 sm:pb-8 border-b border-stone-200/80 mb-10 sm:mb-12">
-          {eventsGalleryData.categories.map((cat) => {
+        <div className="flex flex-wrap items-center gap-6 sm:gap-8 pb-6 sm:pb-8 border-b border-charcoal/10 mb-10 sm:mb-12">
+          {gallery.categories.map((cat) => {
             const isActive = activeCategory === cat.value;
             const count = getCategoryCount(cat.value);
 
@@ -92,16 +97,16 @@ export default function EventsGallerySection() {
               <button
                 key={cat.value}
                 onClick={() => setActiveCategory(cat.value)}
-                className={`relative pb-2 text-sm sm:text-base font-serif tracking-wide transition-all duration-300 flex items-baseline gap-1.5 ${
+                className={`relative pb-2 text-sm sm:text-base font-display tracking-wide transition-all duration-300 flex items-baseline gap-1.5 ${
                   isActive
-                    ? "text-stone-900 font-medium"
-                    : "text-stone-400 hover:text-stone-700"
+                    ? "text-charcoal font-medium"
+                    : "text-site-muted/70 hover:text-charcoal/80"
                 }`}
               >
                 <span>{cat.label}</span>
                 <span
-                  className={`text-[10px] sm:text-xs font-sans tabular-nums ${
-                    isActive ? "text-gold font-semibold" : "text-stone-400"
+                  className={`text-[10px] sm:text-xs font-body tabular-nums ${
+                    isActive ? "text-gold font-semibold" : "text-site-muted/70"
                   }`}
                 >
                   {count}
@@ -123,10 +128,10 @@ export default function EventsGallerySection() {
               <div
                 key={item.id}
                 onClick={() => handleOpenEvent(item)}
-                className="group relative cursor-pointer overflow-hidden rounded-sm bg-stone-900 shadow-sm transition-all duration-500 hover:shadow-xl w-full"
+                className="group relative cursor-pointer overflow-hidden rounded-sm bg-charcoal shadow-sm transition-all duration-500 hover:shadow-xl w-full"
               >
                 {photosCount > 1 && (
-                  <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/65 backdrop-blur-md border border-white/15 text-white/95 text-[11px] font-sans shadow-sm transition-transform duration-300 group-hover:scale-105">
+                  <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/65 backdrop-blur-md border border-white/15 text-white/95 text-[11px] font-body shadow-sm transition-transform duration-300 group-hover:scale-105">
                     <svg
                       className="w-3.5 h-3.5 text-gold shrink-0"
                       fill="none"
@@ -151,22 +156,23 @@ export default function EventsGallerySection() {
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    priority={index < 4}
+                    preload={index < 4}
                   />
 
                   <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                   <div className="absolute inset-0 border border-white/0 group-hover:border-gold/40 transition-colors duration-500 pointer-events-none" />
 
                   <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 flex flex-col justify-end text-white opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 pointer-events-none">
-                    <span className="text-[10px] sm:text-[11px] uppercase tracking-widest text-gold font-sans font-medium mb-1">
+                    <span className="text-[10px] sm:text-[11px] uppercase tracking-widest text-gold font-body font-medium mb-1">
                       {item.category}
                     </span>
 
-                    <h3 className="font-serif text-base sm:text-lg text-white font-medium tracking-wide leading-snug text-balance">
+                    <h3 className="font-display text-base sm:text-lg text-white font-medium tracking-wide leading-snug text-balance">
                       {item.title}
                     </h3>
 
-                    <div className="mt-1 flex items-center gap-1.5 text-stone-200 text-xs font-sans tracking-wide">
+                    {item.location && (
+                    <div className="mt-1 flex items-center gap-1.5 text-white-text/80 text-xs font-body tracking-wide">
                       <svg
                         className="w-3.5 h-3.5 text-gold shrink-0"
                         fill="none"
@@ -188,6 +194,7 @@ export default function EventsGallerySection() {
                       </svg>
                       <span>{item.location}</span>
                     </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -205,7 +212,7 @@ export default function EventsGallerySection() {
               onClick={(e) => e.stopPropagation()}
             >
               {eventImages.length > 1 ? (
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 border border-white/15 text-xs text-white/90 font-sans tracking-wider">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 border border-white/15 text-xs text-white/90 font-body tracking-wider">
                   <span className="text-gold font-medium">{activePhotoIndex + 1}</span>
                   <span className="text-white/40">/</span>
                   <span>{eventImages.length} Photos</span>
@@ -242,7 +249,7 @@ export default function EventsGallerySection() {
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 896px"
                     className="object-contain transition-opacity duration-300 ease-out"
-                    priority
+                    preload
                   />
                 </div>
 
@@ -303,14 +310,14 @@ export default function EventsGallerySection() {
 
               {/* Event Caption & Details */}
               <div className="mt-3 sm:mt-4 text-center px-4 max-w-2xl">
-                <p className="text-[11px] sm:text-xs uppercase tracking-widest text-gold mb-1 font-sans font-medium">
-                  {selectedEvent.category} • {selectedEvent.location}
+                <p className="text-[11px] sm:text-xs uppercase tracking-widest text-gold mb-1 font-body font-medium">
+                  {[selectedEvent.category, selectedEvent.location].filter(Boolean).join(" • ")}
                 </p>
-                <h2 className="font-serif text-lg sm:text-2xl text-white font-medium">
+                <h2 className="font-display text-lg sm:text-2xl text-white font-medium">
                   {selectedEvent.title}
                 </h2>
                 {eventImages.length > 1 && (
-                  <p className="text-[11px] sm:text-xs text-white/50 font-sans mt-1">
+                  <p className="text-[11px] sm:text-xs text-white/50 font-body mt-1">
                     Click photo or use arrows to view all {eventImages.length} images from this event
                   </p>
                 )}

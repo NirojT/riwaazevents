@@ -1,14 +1,26 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
+import Image from "../ui/Image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
-import { galleryData, GalleryItem } from "../../data/gallery";
+import { galleryData, type GalleryItem } from "../../data/gallery";
 import { RevealText, FadeUp, isReducedMotion } from "../animation";
+import { useSite } from "../../lib/site-context";
 
 export default function GallerySection() {
+  // Featured designs lead the strip; the bundled photos fill whatever they leave, so the two
+  // rows always run their full length however few designs are featured.
+  const featured = useSite((s) => s.gallery?.featured ?? []);
+  const bundled = [...galleryData.row1, ...galleryData.row2];
+  const slots: GalleryItem[] = [
+    ...featured.map((d) => ({ id: `design-${d.id}`, image: d.cover, alt: d.name, caption: d.name })),
+    ...bundled,
+  ].slice(0, bundled.length);
+  const row1 = slots.slice(0, galleryData.row1.length);
+  const row2 = slots.slice(galleryData.row1.length);
+
   const sectionRef = useRef<HTMLElement | null>(null);
   const row1Ref = useRef<HTMLDivElement | null>(null);
   const row2Ref = useRef<HTMLDivElement | null>(null);
@@ -154,7 +166,7 @@ export default function GallerySection() {
         className="absolute -left-12 md:-left-20 top-1/3 -translate-y-1/2 w-80 md:w-104 lg:w-120 h-130 pointer-events-none z-0 opacity-30 select-none scale-x-[-1]"
       >
         <Image
-          src="/assets/flower.webp"
+          src="/site/assets/flower.webp"
           alt=""
           fill
           sizes="(max-width: 768px) 320px, 500px"
@@ -185,7 +197,7 @@ export default function GallerySection() {
 
           <div className="max-w-xs md:pt-2">
             <FadeUp delay={0.3} y={15}>
-              <p className="font-editorial text-base md:text-lg text-muted leading-relaxed font-medium md:text-right">
+              <p className="font-editorial text-base md:text-lg text-site-muted leading-relaxed font-medium md:text-right">
                 {galleryData.description}
               </p>
             </FadeUp>
@@ -200,7 +212,7 @@ export default function GallerySection() {
           ref={row1Ref}
           className="flex items-center gap-4 md:gap-6 will-change-transform"
         >
-          {galleryData.row1.map((item, idx) => renderCard(item, idx))}
+          {row1.map((item, idx) => renderCard(item, idx))}
         </div>
 
         {/* Row 2: Slides LEFT on scroll (6 images) */}
@@ -208,7 +220,7 @@ export default function GallerySection() {
           ref={row2Ref}
           className="flex items-center gap-4 md:gap-6 will-change-transform"
         >
-          {galleryData.row2.map((item, idx) => renderCard(item, idx))}
+          {row2.map((item, idx) => renderCard(item, idx))}
         </div>
       </div>
     </section>

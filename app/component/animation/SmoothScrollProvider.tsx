@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useRef, useState } from "react";
+import React, { createContext, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import gsap from "gsap";
@@ -16,7 +16,6 @@ const SmoothScrollContext = createContext<SmoothScrollContextType>({
   reducedMotion: false,
 });
 
-export const useSmoothScroll = () => useContext(SmoothScrollContext);
 
 interface SmoothScrollProviderProps {
   children: React.ReactNode;

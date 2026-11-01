@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
+import { useState } from "react";
+import Image from "../ui/Image";
 import { ArrowRight } from "lucide-react";
 import Container from "../ui/Container";
 import { eventManagementData } from "../../data/eventManagement";
@@ -23,7 +23,7 @@ export default function EventManagementSection() {
         className="absolute top-1/4 -left-16 md:-left-24 w-80 md:w-110 lg:w-130 h-120 md:h-160 pointer-events-none select-none z-0 opacity-40 scale-x-[-1] rotate-12"
       >
         <Image
-          src="/assets/flower.webp"
+          src="/site/assets/flower.webp"
           alt=""
           fill
           sizes="(max-width: 768px) 320px, 500px"
@@ -54,7 +54,7 @@ export default function EventManagementSection() {
 
           <div className="max-w-md">
             <FadeUp delay={0.3} y={15}>
-              <p className="font-editorial text-base md:text-lg text-muted md:text-right leading-relaxed font-medium">
+              <p className="font-editorial text-base md:text-lg text-site-muted md:text-right leading-relaxed font-medium">
                 {eventManagementData.description}
               </p>
             </FadeUp>
@@ -97,7 +97,7 @@ export default function EventManagementSection() {
                           className={`overflow-hidden transition-all duration-400 ease-out ${isActive ? "max-h-24 opacity-100 mt-1.5" : "max-h-0 opacity-0"
                             }`}
                         >
-                          <p className="font-editorial italic text-sm md:text-base text-muted leading-relaxed font-medium">
+                          <p className="font-editorial italic text-sm md:text-base text-site-muted leading-relaxed font-medium">
                             {item.description}
                           </p>
                         </div>
@@ -133,7 +133,7 @@ export default function EventManagementSection() {
                     alt={item.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    priority={item.id === eventManagementData.items[0].id}
+                    preload={item.id === eventManagementData.items[0].id}
                     className="object-cover object-center"
                   />
                 </div>

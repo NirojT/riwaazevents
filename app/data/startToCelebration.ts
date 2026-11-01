@@ -28,7 +28,7 @@ export const startToCelebrationData: StartToCelebrationData = {
       count: "01/06",
       title: "Venue Preparation",
       description: "Preparing the space for everything that follows.",
-      image: "/assets/venue/v1.webp",
+      image: "/site/assets/venue/v1.webp",
     },
     {
       id: "concept-planning",
@@ -36,7 +36,7 @@ export const startToCelebrationData: StartToCelebrationData = {
       count: "02/06",
       title: "Concept & Planning",
       description: "Turning your ideas into one thoughtful vision.",
-      image: "/assets/venue/v2.webp",
+      image: "/site/assets/venue/v2.webp",
     },
     {
       id: "food-hospitality",
@@ -44,7 +44,7 @@ export const startToCelebrationData: StartToCelebrationData = {
       count: "03/06",
       title: "Food & Hospitality",
       description: "Making sure every guest is served and cared for.",
-      image: "/assets/venue/v3.webp",
+      image: "/site/assets/venue/v3.webp",
     },
     {
       id: "entertainment-production",
@@ -52,7 +52,7 @@ export const startToCelebrationData: StartToCelebrationData = {
       count: "04/06",
       title: "Entertainment & Production",
       description: "Creating the atmosphere through music, lighting, and live moments.",
-      image: "/assets/venue/v4.webp",
+      image: "/site/assets/venue/v4.webp",
     },
     {
       id: "event-coordination",
@@ -60,7 +60,7 @@ export const startToCelebrationData: StartToCelebrationData = {
       count: "05/06",
       title: "Event Coordination",
       description: "Keeping every person, vendor, and moment on schedule.",
-      image: "/assets/venue/v1.webp",
+      image: "/site/assets/venue/v1.webp",
     },
     {
       id: "event-closure",
@@ -68,7 +68,7 @@ export const startToCelebrationData: StartToCelebrationData = {
       count: "06/06",
       title: "Event Closure",
       description: "Taking care of the final details even after the celebration ends.",
-      image: "/assets/venue/v2.webp",
+      image: "/site/assets/venue/v2.webp",
     },
   ],
 };

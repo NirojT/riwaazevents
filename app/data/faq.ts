@@ -17,7 +17,7 @@ export const faqData: FAQData = {
   titlePrefix: "A few things you may want",
   titleHighlight: "to know.",
   description:
-    "Real experiences from clients who trust us with their everyday looks and special moments.",
+    "Answers to what families usually ask us before they start planning.",
   items: [
     {
       id: "faq-1",

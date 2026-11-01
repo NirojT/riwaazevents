@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import Image from "next/image";
+import Image from "../ui/Image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
@@ -24,7 +24,7 @@ export default function AboutHero({
   titleLine1 = "We plan the event.",
   titleLine2 = "You enjoy the celebration.",
   subtitle = "Riwaaj is a full-service event management company helping families, couples, and businesses plan and manage memorable events across Nepal.",
-  imageSrc = "/assets/aboutus.webp",
+  imageSrc = "/site/assets/aboutus.webp",
   imageAlt = "Riwaaj Events Grand Celebration",
   className = "",
   minHeight = "min-h-dvh",
@@ -153,7 +153,7 @@ export default function AboutHero({
             src={imageSrc}
             alt={imageAlt}
             fill
-            priority
+            preload
             sizes="100vw"
             className="object-cover object-center"
           />
@@ -171,7 +171,7 @@ export default function AboutHero({
             <div className="overflow-hidden mb-2.5 sm:mb-3">
               <span
                 ref={badgeRef}
-                className="font-sans text-xs md:text-sm font-medium tracking-[0.24em] text-white-text/80 uppercase block will-change-transform"
+                className="font-body text-xs md:text-sm font-medium tracking-[0.24em] text-white-text/80 uppercase block will-change-transform"
               >
                 {badge}
               </span>

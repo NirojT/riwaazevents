@@ -1,6 +1,4 @@
-"use client";
 
-import React from "react";
 import AboutHero from "./AboutHero";
 
 export interface EventHeroProps {
@@ -15,10 +13,10 @@ export interface EventHeroProps {
 
 export default function EventHero({
   badge = "Events",
-  titleLine1 = "Every events tells a",
+  titleLine1 = "Every event tells a",
   titleLine2 = "different story",
   subtitle = "",
-  imageSrc = "/assets/event.webp",
+  imageSrc = "/site/assets/event.webp",
   imageAlt = "Riwaaj Events Grand Ceremonial Mandap Celebration",
   className = "",
 }: EventHeroProps) {

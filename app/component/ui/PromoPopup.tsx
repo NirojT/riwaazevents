@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useSyncExternalStore } from "react";
-import Image from "next/image";
+import { useState, useEffect, useCallback, useSyncExternalStore } from "react";
+import Image from "./Image";
 import { X } from "lucide-react";
-import { siteConfig } from "../../data/site-config";
+import { whatsappHref } from "../../data/site-config";
+import { useSite } from "../../lib/site-context";
 
 const emptySubscribe = () => () => { };
 
@@ -15,23 +16,20 @@ export default function PromoPopup() {
     () => false
   );
 
-  // Format WhatsApp phone number and inquiry message
-  const rawPhone = siteConfig.contact.whatsapp || siteConfig.contact.phone;
-  const digitsOnly = rawPhone.replace(/[^0-9]/g, "");
-  const whatsappNumber = digitsOnly.startsWith("977") ? digitsOnly : `977${digitsOnly}`;
-  const inquiryMessage = encodeURIComponent(
-    "Hello Riwaaz Events, I would like to inquire about planning an event with you."
+  const settings = useSite((st) => st.settings);
+  const whatsappUrl = whatsappHref(
+    settings.whatsapp || settings.phone,
+    `Hello ${settings.businessName}, I would like to inquire about planning an event with you.`
   );
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${inquiryMessage}`;
 
   const handleClose = useCallback(() => {
     setIsOpen(false);
-    sessionStorage.setItem("riwaaz_popup_seen", "true");
+    sessionStorage.setItem("riwaaj_popup_seen", "true");
   }, []);
 
   useEffect(() => {
     // Check if user has already dismissed the popup in this browser session
-    const seen = sessionStorage.getItem("riwaaz_popup_seen");
+    const seen = sessionStorage.getItem("riwaaj_popup_seen");
     if (seen) return;
 
     // Trigger popup after exactly 5 seconds
@@ -73,7 +71,7 @@ export default function PromoPopup() {
       onClick={handleClose}
     >
       <div
-        className="relative max-w-sm sm:max-w-md md:max-w-lg w-full bg-[#160406] rounded-2xl overflow-hidden shadow-2xl border border-gold/40 transition-all duration-300 transform scale-100"
+        className="relative max-w-sm sm:max-w-md md:max-w-lg w-full bg-maroon-black rounded-2xl overflow-hidden shadow-2xl border border-gold/40 transition-all duration-300 transform scale-100"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -90,15 +88,15 @@ export default function PromoPopup() {
           rel="noopener noreferrer"
           onClick={handleClose}
           className="block relative w-full aspect-square overflow-hidden group cursor-pointer"
-          aria-label="Chat with Riwaaz Events on WhatsApp"
+          aria-label="Chat with Riwaaj Events on WhatsApp"
         >
           <Image
-            src="/assets/bookpopup.webp"
-            alt="Riwaaz Events Special Announcement"
+            src="/site/assets/bookpopup.webp"
+            alt="Riwaaj Events Special Announcement"
             fill
             sizes="(max-width: 640px) 90vw, (max-width: 1024px) 500px, 600px"
             className="object-contain transition-transform duration-500 group-hover:scale-102"
-            priority
+            preload
           />
         </a>
       </div>

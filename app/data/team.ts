@@ -28,7 +28,7 @@ export const teamData: TeamSectionData = {
       role: "Creative & Spatial Design Lead",
       description:
         "Every Riwaaj celebration starts on the drawing board palettes, layouts, light and story, drawn by hand before anything is built.",
-      image: "/assets/teams/t1.webp",
+      image: "/site/assets/teams/t1.webp",
       imageAlt: "Ms. Ankita Khadka - Event Design Specialist at Riwaaj Events",
     },
     {
@@ -37,7 +37,7 @@ export const teamData: TeamSectionData = {
       role: "Production & Operations Director",
       description:
         "Orchestrating technical logistics, staging, vendor synchronisation, and meticulous on-ground schedules so each moment unfolds effortlessly.",
-      image: "/assets/teams/t2.webp",
+      image: "/site/assets/teams/t2.webp",
       imageAlt: "Mr. John Doe - Production Director at Riwaaj Events",
     },
     {
@@ -46,7 +46,7 @@ export const teamData: TeamSectionData = {
       role: "Hospitality & Guest Experience Lead",
       description:
         "Ensuring families and esteemed guests experience gracious hospitality, attentive coordination, and warmth from arrival to the closing toast.",
-      image: "/assets/teams/t3.webp",
+      image: "/site/assets/teams/t3.webp",
       imageAlt: "Ms. Anisha Shah - Hospitality Lead at Riwaaj Events",
     },
   ],

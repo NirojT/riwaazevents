@@ -1,14 +1,12 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import Image from "next/image";
+import { useRef, useEffect } from "react";
+import Image from "../ui/Image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
-import {
-  servicesListData,
-  type ServiceListItem,
-} from "../../data/servicesList";
+import { type ServiceListItem } from "../../data/servicesList";
+import { useSite } from "../../lib/site-context";
 import { isReducedMotion } from "../animation";
 
 export interface ServicesListSectionProps {
@@ -16,10 +14,16 @@ export interface ServicesListSectionProps {
   className?: string;
 }
 
+/** "01", "02" … — a service's number is its place in the list the office ordered. */
+const serviceNumber = (index: number) => String(index + 1).padStart(2, "0");
+
 export default function ServicesListSection({
-  services = servicesListData.services,
+  services: servicesProp,
   className = "",
 }: ServicesListSectionProps) {
+  // The office edits the services in Admin › Website; a caller can still pass its own list.
+  const storeServices = useSite((s) => s.services);
+  const services = servicesProp ?? storeServices;
   const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -75,6 +79,8 @@ export default function ServicesListSection({
     return () => ctx.revert();
   }, [services]);
 
+  if (services.length === 0) return null;
+
   return (
     <section
       ref={sectionRef}
@@ -91,7 +97,8 @@ export default function ServicesListSection({
             return (
               <div
                 key={item.id}
-                className="service-row grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 xl:gap-20 items-center"
+                id={item.id}
+                className="service-row scroll-mt-28 grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 xl:gap-20 items-center"
               >
                 <div
                   className={`service-image lg:col-span-6 xl:col-span-6 ${
@@ -119,7 +126,7 @@ export default function ServicesListSection({
                   }`}
                 >
                   <span className="font-editorial text-4xl sm:text-5xl font-normal text-gold mb-2 block tracking-tight">
-                    {item.number}
+                    {serviceNumber(index)}
                   </span>
 
                   <h2 className="font-editorial text-2xl sm:text-3xl lg:text-[34px] font-normal text-charcoal leading-[1.2] tracking-wide mb-3">
@@ -135,7 +142,7 @@ export default function ServicesListSection({
                       {item.tags.map((tag, tIdx) => (
                         <span
                           key={tIdx}
-                          className="font-sans text-[11px] sm:text-xs tracking-wider text-charcoal/80 border border-charcoal/20 px-3.5 py-1.5 rounded-none bg-transparent hover:border-gold hover:text-gold-dark transition-colors duration-200 select-none"
+                          className="font-body text-[11px] sm:text-xs tracking-wider text-charcoal/80 border border-charcoal/20 px-3.5 py-1.5 rounded-none bg-transparent hover:border-gold hover:text-gold-dark transition-colors duration-200 select-none"
                         >
                           {tag}
                         </span>

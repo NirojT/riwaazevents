@@ -11,12 +11,6 @@ export const metadata: Metadata = {
   title: "Our Events | Riwaaj Events Nepal - Every Event Tells a Different Story",
   description:
     "Explore unforgettable weddings, galas, and bespoke celebrations curated by Riwaaj Events across Nepal. Every celebration is tailored to your unique love story.",
-  keywords: [
-    "Riwaaj Events Portfolio",
-    "Nepal Wedding Gallery",
-    "Luxury Weddings Nepal",
-    "Event Management Itahari Kathmandu",
-  ],
 };
 
 export default function EventsPage() {

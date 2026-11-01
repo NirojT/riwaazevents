@@ -1,7 +1,5 @@
-"use client";
 
-import React from "react";
-import Image from "next/image";
+import Image from "../ui/Image";
 import Link from "next/link";
 import Container from "../ui/Container";
 import { ctaData } from "../../data/cta";
@@ -15,7 +13,7 @@ export default function CTASection() {
           src={ctaData.backgroundImage}
           alt="Grand celebration hall"
           fill
-          priority
+          preload
           sizes="100vw"
           className="object-cover object-center scale-102"
         />
@@ -49,7 +47,7 @@ export default function CTASection() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4.5 w-full sm:w-auto">
             <Link
               href={ctaData.primaryButton.href}
-              className="w-full sm:w-auto px-7 sm:px-8 py-3 sm:py-3.5 bg-gold hover:bg-[#a68a5a] text-white-text font-editorial text-sm sm:text-base tracking-wider transition-all duration-300 shadow-lg text-center cursor-pointer active:scale-95"
+              className="w-full sm:w-auto px-7 sm:px-8 py-3 sm:py-3.5 bg-gold hover:bg-gold-hover text-white-text font-editorial text-sm sm:text-base tracking-wider transition-all duration-300 shadow-lg text-center cursor-pointer active:scale-95"
             >
               {ctaData.primaryButton.label}
             </Link>

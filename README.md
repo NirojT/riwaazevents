@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Riwaaj Events website
 
-## Getting Started
+The public site: home, about, services, events and contact. Its content is edited in the admin app
+under **Website**, and the gallery shows designs ticked "Show on website" in the catalogue.
 
-First, run the development server:
+## Running it
 
 ```bash
+cp .env.example .env.local   # point API_URL at the backend
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The site works with the backend down: it shows the copy bundled in `app/data`, so a build never
+needs the backend. See `.env.example` for what each setting does.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How the CMS connects
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/lib/site-data.ts` reads `GET /api/v1/public/site` and `/public/gallery` on the server, once
+  per page render, and maps them to what the sections show. `app/layout.tsx` hands the result to the
+  sections through `useSite()`.
+- **Nothing is cached, on purpose.** A save in the admin shows on the next page load, and
+  `SiteEffects` refreshes an open tab when someone comes back to it. Don't add `revalidate` or
+  `force-cache` to these reads: a stored copy once kept an old phone number on the live site.
+- If the backend can't be reached, the site keeps serving the last answer it got, and the bundled
+  copy only if it has never had one.
+- Lists from the server replace the bundled ones as they are, so an emptied list hides its section.
+  The gallery is the exception: with no design ticked, the bundled showcase stays up.
+- The contact form posts through a server action (`app/lib/enquiry.ts`) to `/public/enquiries`,
+  passing on the visitor's address because the backend rate-limits by caller.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Images in the CMS are stored as `/site/assets/...` or as uploaded URLs, so `public/site` has to stay
+at that path.

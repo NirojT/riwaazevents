@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
-import Image from "next/image";
+import { useRef, useState, useEffect } from "react";
+import Image from "../ui/Image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Container from "../ui/Container";
 import { servicesData } from "../../data/services";
@@ -53,12 +53,12 @@ export default function ServicesSection() {
         className="absolute top-0 right-0 w-90 md:w-125 lg:w-155 h-130 md:h-170 pointer-events-none select-none z-0 translate-x-4 md:translate-x-8 -translate-y-4 md:-translate-y-8"
       >
         <Image
-          src="/assets/flower.webp"
+          src="/site/assets/flower.webp"
           alt=""
           fill
           sizes="(max-width: 768px) 360px, (max-width: 1024px) 500px, 620px"
           className="object-contain object-top-right pointer-events-none"
-          priority
+          preload
         />
       </div>
 
@@ -85,7 +85,7 @@ export default function ServicesSection() {
 
           <div className="flex flex-col items-start md:items-end gap-5 max-w-md">
             <FadeUp delay={0.3} y={15}>
-              <p className="font-editorial text-base md:text-lg text-muted md:text-right leading-relaxed font-medium">
+              <p className="font-editorial text-base md:text-lg text-site-muted md:text-right leading-relaxed font-medium">
                 {servicesData.subtitle}
               </p>
             </FadeUp>
@@ -148,7 +148,7 @@ export default function ServicesSection() {
               </div>
 
               <div className="absolute inset-x-0 bottom-0 z-10 p-6 flex flex-col justify-end pointer-events-none transform translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400 ease-out">
-                <span className="font-editorial text-xs md:text-sm font-normal tracking-[0.24em] text-primary mb-1">
+                <span className="font-editorial text-xs md:text-sm font-normal tracking-[0.24em] text-gold mb-1">
                   {service.number}
                 </span>
 

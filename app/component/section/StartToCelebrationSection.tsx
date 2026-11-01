@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
+import { useState } from "react";
+import Image from "../ui/Image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Container from "../ui/Container";
 import { startToCelebrationData } from "../../data/startToCelebration";
@@ -31,7 +31,7 @@ export default function StartToCelebrationSection() {
         className="absolute -right-10 md:-right-16 top-1/2 -translate-y-1/2 w-80 md:w-104 lg:w-120 h-130 pointer-events-none z-0 opacity-40 select-none"
       >
         <Image
-          src="/assets/flower.webp"
+          src="/site/assets/flower.webp"
           alt=""
           fill
           sizes="(max-width: 768px) 320px, 500px"
@@ -60,7 +60,7 @@ export default function StartToCelebrationSection() {
             </h2>
 
             <FadeUp delay={0.3} y={15}>
-              <p className="font-editorial text-base md:text-lg text-muted leading-relaxed font-medium max-w-xs md:max-w-sm">
+              <p className="font-editorial text-base md:text-lg text-site-muted leading-relaxed font-medium max-w-xs md:max-w-sm">
                 {startToCelebrationData.description}
               </p>
             </FadeUp>
@@ -71,7 +71,7 @@ export default function StartToCelebrationSection() {
               <button
                 onClick={prev}
                 aria-label="Previous step"
-                className="absolute -left-3 md:-left-4 top-1/2 -translate-y-1/2 z-30 h-8 w-8 md:h-9 md:w-9 rounded-full bg-gold hover:bg-[#A38656] text-white flex items-center justify-center shadow-md transition-all duration-300 cursor-pointer active:scale-95"
+                className="absolute -left-3 md:-left-4 top-1/2 -translate-y-1/2 z-30 h-8 w-8 md:h-9 md:w-9 rounded-full bg-gold hover:bg-gold-hover text-white flex items-center justify-center shadow-md transition-all duration-300 cursor-pointer active:scale-95"
               >
                 <ChevronLeft className="h-4 w-4 text-white stroke-[2.2]" />
               </button>
@@ -79,7 +79,7 @@ export default function StartToCelebrationSection() {
               <button
                 onClick={next}
                 aria-label="Next step"
-                className="absolute -right-3 md:-right-4 top-1/2 -translate-y-1/2 z-30 h-8 w-8 md:h-9 md:w-9 rounded-full bg-gold hover:bg-[#A38656] text-white flex items-center justify-center shadow-md transition-all duration-300 cursor-pointer active:scale-95"
+                className="absolute -right-3 md:-right-4 top-1/2 -translate-y-1/2 z-30 h-8 w-8 md:h-9 md:w-9 rounded-full bg-gold hover:bg-gold-hover text-white flex items-center justify-center shadow-md transition-all duration-300 cursor-pointer active:scale-95"
               >
                 <ChevronRight className="h-4 w-4 text-white stroke-[2.2]" />
               </button>
@@ -111,7 +111,7 @@ export default function StartToCelebrationSection() {
                         alt={item.title}
                         fill
                         sizes="(max-width: 768px) 240px, 360px"
-                        priority={pos <= 1}
+                        preload={pos <= 1}
                         className="object-cover object-center"
                       />
 

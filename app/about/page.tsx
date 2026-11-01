@@ -14,15 +14,6 @@ export const metadata: Metadata = {
   title: "About Us | Riwaaj Events Nepal - Event Planning & Management",
   description:
     "Riwaaj is a full-service event management company helping families, couples, and businesses plan and manage memorable events across Nepal.",
-  keywords: [
-    "Riwaaj Events",
-    "About Riwaaj Events",
-    "Wedding Planner Nepal",
-    "Riwaaj Events Team",
-    "Event Management Nepal",
-    "Weddings Itahari Kathmandu",
-    "Nepal Wedding Planners",
-  ],
 };
 
 export default function AboutPage() {
@@ -38,7 +29,7 @@ export default function AboutPage() {
           eyebrow="Our values"
           titlePrefix="A few things you may want"
           titleHighlight="to know."
-          description="Real experiences from clients who trust us with their everyday looks and special moments."
+          description="Answers to what families usually ask us before they start planning."
           watermarkPosition="left"
         />
         <StatsSection />

@@ -1,16 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
+import { useState } from "react";
+import Image from "../ui/Image";
 import { Star } from "lucide-react";
 import Container from "../ui/Container";
 import { testimonialsData } from "../../data/testimonials";
+import { useSite } from "../../lib/site-context";
+
+/** The quote marks are drawn here, so a quote typed in the admin with or without its own looks the same. */
+const quoted = (text: string) => `“${text.trim().replace(/^["“”]+|["“”]+$/g, "")}”`;
 import { RevealText, FadeUp } from "../animation";
 
 export default function TestimonialsSection() {
-  const items = testimonialsData.items;
+  const items = useSite((s) => s.testimonials);
   // Allows mobile touch devices to tap to toggle between text card & photo card
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
+
+  if (items.length === 0) return null;
 
   const handleCardClick = (id: string) => {
     setActiveCardId((prev) => (prev === id ? null : id));
@@ -42,7 +48,7 @@ export default function TestimonialsSection() {
 
           <div className="flex flex-col items-start md:items-end gap-3.5 md:pt-2 max-w-sm">
             <FadeUp delay={0.3} y={15}>
-              <p className="font-editorial text-base md:text-lg text-muted leading-relaxed font-medium md:text-right">
+              <p className="font-editorial text-base md:text-lg text-site-muted leading-relaxed font-medium md:text-right">
                 {testimonialsData.description}
               </p>
             </FadeUp>
@@ -62,7 +68,7 @@ export default function TestimonialsSection() {
               >
                 <div
                   onClick={() => handleCardClick(item.id)}
-                  className="group relative h-110 sm:h-117.5 md:h-125 overflow-hidden cursor-pointer select-none bg-[#F3EEE4]/30 transition-all duration-500"
+                  className="group relative h-110 sm:h-117.5 md:h-125 overflow-hidden cursor-pointer select-none bg-linen/30 transition-all duration-500"
                 >
                   <div
                     className={`
@@ -102,12 +108,12 @@ export default function TestimonialsSection() {
                       </div>
 
                       <p className="font-editorial text-sm sm:text-[15px] md:text-base text-charcoal/85 font-medium leading-relaxed italic">
-                        {item.quote}
+                        {quoted(item.quote)}
                       </p>
                     </div>
 
                     <div className="pt-2">
-                      <p className="font-sans text-xs md:text-[13px] font-semibold text-charcoal/80 tracking-wider uppercase">
+                      <p className="font-body text-xs md:text-[13px] font-semibold text-charcoal/80 tracking-wider uppercase">
                         {item.event}
                       </p>
                     </div>
@@ -128,7 +134,7 @@ export default function TestimonialsSection() {
                       alt={`${item.clientName} - ${item.event}`}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
-                      priority={idx === 0}
+                      preload={idx === 0}
                       className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                     />
 

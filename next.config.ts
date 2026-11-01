@@ -1,5 +1,15 @@
 import type { NextConfig } from "next";
 
+type RemotePatterns = NonNullable<NonNullable<NextConfig["images"]>["remotePatterns"]>;
+
+/** The file server's host, so photos uploaded through the CMS are optimised like the site's own. */
+const fileServer = (): RemotePatterns => {
+  const url = process.env.NEXT_PUBLIC_FILE_URL;
+  if (!url) return [];
+  const { protocol, hostname, port } = new URL(url);
+  return [{ protocol: protocol.replace(":", "") as "http" | "https", hostname, port, pathname: "/**" }];
+};
+
 const nextConfig: NextConfig = {
   reactCompiler: true,
   compress: true,
@@ -14,6 +24,7 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+      ...fileServer(),
     ],
   },
 

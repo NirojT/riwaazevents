@@ -1,22 +1,16 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { isReducedMotion } from "./hooks/useAnimation";
 
 export default function CustomCursor() {
-  const [mounted, setMounted] = useState(false);
   const dotRef = useRef<HTMLDivElement | null>(null);
   const ringRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLSpanElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
 
     // 1. Accessibility and Device Guard
     // Completely disable on touch devices, coarse pointers, and reduced motion
@@ -166,10 +160,7 @@ export default function CustomCursor() {
       cancelAnimationFrame(rafId);
       gsap.killTweensOf([ring, textEl]);
     };
-  }, [mounted]);
-
-  // Do not render on server during SSR to completely prevent hydration mismatch
-  if (!mounted) return null;
+  }, []);
 
   return (
     <div
@@ -180,17 +171,17 @@ export default function CustomCursor() {
       {/* Small Gold Center Dot (8px diameter, anchored to pointer) */}
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 -ml-1 -mt-1 h-2 w-2 rounded-full bg-primary will-change-transform shadow-xs"
+        className="fixed top-0 left-0 -ml-1 -mt-1 h-2 w-2 rounded-full bg-gold will-change-transform shadow-xs"
       />
 
       {/* Large Thin Gold/Cream Outlined Circle (32px diameter, enlarges to 52px on hover) */}
       <div
         ref={ringRef}
-        className="fixed top-0 left-0 -ml-4 -mt-4 h-8 w-8 rounded-full border border-primary/45 bg-transparent will-change-transform flex items-center justify-center"
+        className="fixed top-0 left-0 -ml-4 -mt-4 h-8 w-8 rounded-full border border-gold/45 bg-transparent will-change-transform flex items-center justify-center"
       >
         <span
           ref={textRef}
-          className="text-[7px] font-sans font-medium tracking-[0.16em] uppercase text-white-text opacity-0 scale-75 select-none pointer-events-none"
+          className="text-[7px] font-body font-medium tracking-[0.16em] uppercase text-white-text opacity-0 scale-75 select-none pointer-events-none"
         />
       </div>
     </div>

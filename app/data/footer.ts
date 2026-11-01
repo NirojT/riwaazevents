@@ -22,7 +22,6 @@ export interface FooterData {
   watermarkText: string;
   socials: FooterSocialLink[];
   menuLinks: FooterLink[];
-  servicesLinks: FooterLink[];
   contact: FooterContactInfo;
   bottomBar: {
     copyright: string;
@@ -54,15 +53,7 @@ export const footerData: FooterData = {
     { label: "About", href: "/about" },
     { label: "Services", href: "/services" },
     { label: "Our Events", href: "/events" },
-    { label: "Journal", href: "/journal" },
     { label: "Contact", href: "/contact" },
-  ],
-  servicesLinks: [
-    { label: "Wedding Planning", href: "/services#wedding-planning" },
-    { label: "Venue & Styling", href: "/services#venue-styling" },
-    { label: "Floral Design", href: "/services#floral-design" },
-    { label: "Lighting & Production", href: "/services#lighting-production" },
-    { label: "Corporate Events", href: "/services#corporate-events" },
   ],
   contact: {
     email: "hello@riwaajevents.com",
@@ -71,7 +62,7 @@ export const footerData: FooterData = {
     hours: "Sun – Fri · 10:00 – 18:00",
   },
   bottomBar: {
-    copyright: "© 2026 RIWAAJ EVENTS",
+    copyright: "RIWAAJ EVENTS",
     location: "ITAHARI · NEPAL",
   },
 };

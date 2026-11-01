@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import Image from "next/image";
+import { useRef, useEffect } from "react";
+import Image from "../ui/Image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
@@ -87,7 +87,7 @@ export default function AboutStorySection({
             className="absolute -left-16 sm:-left-20 top-1/4 w-80 md:w-104 lg:w-lg h-140 pointer-events-none z-0 opacity-25 select-none"
           >
             <Image
-              src="/assets/flower.webp"
+              src="/site/assets/flower.webp"
               alt=""
               fill
               sizes="(max-width: 768px) 320px, 500px"
@@ -100,7 +100,7 @@ export default function AboutStorySection({
             className="absolute -right-16 sm:-right-24 bottom-1/6 w-80 md:w-104 lg:w-lg h-140 pointer-events-none z-0 opacity-20 select-none rotate-180"
           >
             <Image
-              src="/assets/flower.webp"
+              src="/site/assets/flower.webp"
               alt=""
               fill
               sizes="(max-width: 768px) 320px, 500px"

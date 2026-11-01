@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useState, useCallback } from "react";
-import Image from "next/image";
+import Image from "../ui/Image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -283,7 +283,7 @@ export default function BehindTheScenesSection({
                   {/* Caption badge on hover */}
                   {item.caption && (
                     <div className="absolute bottom-3 left-3 right-3 text-left opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                      <span className="font-sans text-[11px] tracking-wider uppercase text-white-text bg-black/65 backdrop-blur-xs px-2.5 py-1">
+                      <span className="font-body text-[11px] tracking-wider uppercase text-white-text bg-black/65 backdrop-blur-xs px-2.5 py-1">
                         {item.caption}
                       </span>
                     </div>

@@ -34,11 +34,11 @@ export const featuredEventsData: FeaturedEventsData = {
         "An elegant evening brought together through thoughtful planning, warm lighting, beautiful décor, and seamless guest hospitality.",
       location: "Kathmandu, Nepal",
       guests: "500+ Guests",
-      backgroundImage: "/assets/idontknow.webp",
+      backgroundImage: "/site/assets/idontknow.webp",
       thumbnails: [
-        "/assets/s1/s2.webp",
-        "/assets/s1/s3.webp",
-        "/assets/s1/s4.webp",
+        "/site/assets/s1/s2.webp",
+        "/site/assets/s1/s3.webp",
+        "/site/assets/s1/s4.webp",
       ],
     },
     {
@@ -53,9 +53,9 @@ export const featuredEventsData: FeaturedEventsData = {
       backgroundImage:
         "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1920",
       thumbnails: [
-        "/assets/s1/s1.webp",
-        "/assets/s1/s2.webp",
-        "/assets/s1/s3.webp",
+        "/site/assets/s1/s1.webp",
+        "/site/assets/s1/s2.webp",
+        "/site/assets/s1/s3.webp",
       ],
     },
     {
@@ -70,9 +70,9 @@ export const featuredEventsData: FeaturedEventsData = {
       backgroundImage:
         "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&q=80&w=1920",
       thumbnails: [
-        "/assets/s1/s4.webp",
-        "/assets/s1/s1.webp",
-        "/assets/s1/s2.webp",
+        "/site/assets/s1/s4.webp",
+        "/site/assets/s1/s1.webp",
+        "/site/assets/s1/s2.webp",
       ],
     },
     {
@@ -87,9 +87,9 @@ export const featuredEventsData: FeaturedEventsData = {
       backgroundImage:
         "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1920",
       thumbnails: [
-        "/assets/s1/s3.webp",
-        "/assets/s1/s4.webp",
-        "/assets/s1/s1.webp",
+        "/site/assets/s1/s3.webp",
+        "/site/assets/s1/s4.webp",
+        "/site/assets/s1/s1.webp",
       ],
     },
   ],

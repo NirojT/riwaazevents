@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import Image from "next/image";
+import { useRef, useEffect } from "react";
+import Image from "../ui/Image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
 import { teamData, type TeamMember } from "../../data/team";
+import { useSite } from "../../lib/site-context";
 import { isReducedMotion } from "../animation";
 
 export interface TeamSectionProps {
@@ -24,11 +25,14 @@ export default function TeamSection({
   titleLine1 = teamData.titleLine1,
   titleLine2 = teamData.titleLine2,
   description = teamData.description,
-  members = teamData.members,
+  members: membersProp,
   className = "",
   showWatermark = true,
   roundedTop = true,
 }: TeamSectionProps) {
+  // The office edits the team in Admin › Website; a caller can still pass its own list.
+  const storeMembers = useSite((s) => s.team);
+  const members = membersProp ?? storeMembers;
   const sectionRef = useRef<HTMLElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<HTMLDivElement | null>(null);
@@ -82,11 +86,14 @@ export default function TeamSection({
     return () => ctx.revert();
   }, [members]);
 
+
+  if (members.length === 0) return null;
+
   return (
     <div className={`relative ${roundedTop ? "pt-3 sm:pt-4" : ""}`}>
       <section
         ref={sectionRef}
-        className={`relative bg-linear-to-b from-[#f8f4ed] via-ivory to-[#f6f1e8] py-20 sm:py-24 md:py-32 overflow-hidden ${roundedTop
+        className={`relative bg-linear-to-b from-linen-light via-ivory to-linen-deep py-20 sm:py-24 md:py-32 overflow-hidden ${roundedTop
           ? "rounded-t-4xl sm:rounded-t-4xl "
           : "border-t border-charcoal/8"
           } ${className}`}
@@ -98,7 +105,7 @@ export default function TeamSection({
               className="absolute -right-16 sm:-right-24 -top-10 w-80 md:w-110 lg:w-130 h-140 pointer-events-none z-0 opacity-30 select-none"
             >
               <Image
-                src="/assets/flower.webp"
+                src="/site/assets/flower.webp"
                 alt=""
                 fill
                 sizes="(max-width: 768px) 320px, 500px"
@@ -111,7 +118,7 @@ export default function TeamSection({
               className="absolute -left-16 sm:-left-24 -bottom-10 w-80 md:w-110 lg:w-130 h-140 pointer-events-none z-0 opacity-25 select-none scale-x-[-1] rotate-12"
             >
               <Image
-                src="/assets/flower.webp"
+                src="/site/assets/flower.webp"
                 alt=""
                 fill
                 sizes="(max-width: 768px) 320px, 500px"
@@ -174,6 +181,12 @@ export default function TeamSection({
                   <h3 className="font-editorial text-lg sm:text-xl font-normal text-charcoal tracking-wide">
                     {member.name}
                   </h3>
+
+                  {member.role && (
+                    <p className="font-body text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-gold mt-1">
+                      {member.role}
+                    </p>
+                  )}
 
                   <p className="font-editorial text-xs sm:text-sm text-charcoal/75 leading-relaxed font-normal mt-1.5 max-w-sm">
                     {member.description}

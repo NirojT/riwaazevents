@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ElementType } from "react";
+import React, { type ElementType } from "react";
 import { useFadeUp } from "./hooks/useAnimation";
 
 interface FadeUpProps {

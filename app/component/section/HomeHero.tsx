@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -140,10 +140,10 @@ export default function HomeHero() {
             muted
             playsInline
             preload="metadata"
-            poster="/assets/heroimage.webp"
+            poster="/site/assets/heroimage.webp"
             className="absolute inset-0 w-full h-full object-cover object-[30%_center] md:object-center"
           >
-            <source src="/vid/herovideo.mp4" type="video/mp4" />
+            <source src="/site/vid/herovideo.mp4" type="video/mp4" />
           </video>
         </div>
 
@@ -187,7 +187,7 @@ export default function HomeHero() {
             <MagneticButton strength={0.18}>
               <Link
                 href="/contact"
-                className="w-full sm:w-auto text-center inline-flex items-center justify-center font-sans text-xs md:text-sm font-medium tracking-[0.16em] bg-primary text-white-text hover:bg-gold-light active:scale-[0.99] transition-all duration-300 py-3.5 px-7 select-none cursor-pointer"
+                className="w-full sm:w-auto text-center inline-flex items-center justify-center font-body text-xs md:text-sm font-medium tracking-[0.16em] bg-gold text-white-text hover:bg-gold-light active:scale-[0.99] transition-all duration-300 py-3.5 px-7 select-none cursor-pointer"
               >
                 Book Appointment
               </Link>
@@ -196,7 +196,7 @@ export default function HomeHero() {
             <MagneticButton strength={0.18}>
               <Link
                 href="/contact"
-                className="w-full sm:w-auto text-center inline-flex items-center justify-center font-sans text-xs md:text-sm font-medium tracking-[0.16em] border border-white-text/60 text-white-text hover:bg-white-text hover:text-charcoal active:scale-[0.99] transition-all duration-300 py-3.5 px-7 select-none cursor-pointer"
+                className="w-full sm:w-auto text-center inline-flex items-center justify-center font-body text-xs md:text-sm font-medium tracking-[0.16em] border border-white-text/60 text-white-text hover:bg-white-text hover:text-charcoal active:scale-[0.99] transition-all duration-300 py-3.5 px-7 select-none cursor-pointer"
               >
                 Plan your event
               </Link>

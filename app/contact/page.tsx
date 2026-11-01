@@ -16,6 +16,7 @@ export default function ContactPage() {
   return (
     <div className="flex flex-col min-h-screen bg-ivory">
       <Navbar />
+
       <main className="flex-1 pt-24 md:pt-32">
         <ContactSection />
         <FAQSection />

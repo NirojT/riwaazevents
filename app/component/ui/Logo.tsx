@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import Image from "./Image";
 
 interface LogoProps {
   theme?: "light" | "dark";
@@ -26,12 +26,12 @@ export default function Logo({
     >
       <div className={`relative ${sizeClasses}`}>
         <Image
-          src="/assets/reallogo.webp"
+          src="/site/assets/reallogo.webp"
           alt="Riwaaj Events Logo"
           fill
           sizes="(max-width: 768px) 160px, 240px"
           className="object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-sm"
-          priority
+          preload
         />
       </div>
     </Link>

@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
+import { useState } from "react";
+import Image from "../ui/Image";
 import Link from "next/link";
 import { MapPin, Users, ArrowUpRight, ArrowLeft, ArrowRight } from "lucide-react";
 import Container from "../ui/Container";
@@ -35,7 +35,7 @@ export default function FeaturedEventsSection() {
               src={slide.backgroundImage}
               alt={slide.title}
               fill
-              priority={index === 0}
+              preload={index === 0}
               className="object-cover object-center transition-transform duration-1000 ease-out"
             />
           </div>
@@ -74,9 +74,9 @@ export default function FeaturedEventsSection() {
 
           <div className="lg:col-span-5 flex flex-col items-center lg:items-end">
             <div className="w-full max-w-100">
-              <div className="w-full bg-[#faf7f2]/95 backdrop-blur-md rounded-base md:rounded-lg p-5 md:p-6 shadow-2xl border border-white/40 text-charcoal transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+              <div className="w-full bg-parchment/95 backdrop-blur-md rounded-base md:rounded-lg p-5 md:p-6 shadow-2xl border border-white/40 text-charcoal transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
                 <div className="flex items-center justify-between border-b border-charcoal/10 pb-2.5 mb-2.5">
-                  <span className="font-editorial text-[11px] md:text-xs tracking-[0.2em] text-primary uppercase font-normal">
+                  <span className="font-editorial text-[11px] md:text-xs tracking-[0.2em] text-gold uppercase font-normal">
                     {currentSlide.tag}
                   </span>
                   <span className="font-editorial text-[11px] md:text-xs text-charcoal/50 tracking-wider">
@@ -92,14 +92,14 @@ export default function FeaturedEventsSection() {
                   {currentSlide.description}
                 </p>
 
-                <div className="flex items-center gap-3.5 py-2 border-y border-charcoal/10 text-charcoal/75 text-[11px] md:text-xs font-sans mb-3.5">
+                <div className="flex items-center gap-3.5 py-2 border-y border-charcoal/10 text-charcoal/75 text-[11px] md:text-xs font-body mb-3.5">
                   <div className="flex items-center gap-1.5">
-                    <MapPin className="h-3.5 w-3.5 text-primary shrink-0" />
+                    <MapPin className="h-3.5 w-3.5 text-gold shrink-0" />
                     <span>{currentSlide.location}</span>
                   </div>
                   <span className="text-charcoal/30 select-none">|</span>
                   <div className="flex items-center gap-1.5">
-                    <Users className="h-3.5 w-3.5 text-primary shrink-0" />
+                    <Users className="h-3.5 w-3.5 text-gold shrink-0" />
                     <span>{currentSlide.guests}</span>
                   </div>
                 </div>
@@ -123,7 +123,7 @@ export default function FeaturedEventsSection() {
 
                 <Link
                   href="/contact"
-                  className="group/link inline-flex items-center gap-1.5 font-editorial text-xs md:text-[13px] text-charcoal hover:text-primary tracking-widest uppercase transition-colors duration-300 font-normal underline underline-offset-4"
+                  className="group/link inline-flex items-center gap-1.5 font-editorial text-xs md:text-[13px] text-charcoal hover:text-gold tracking-widest uppercase transition-colors duration-300 font-normal underline underline-offset-4"
                 >
                   <span>VIEW EVENT</span>
                   <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />

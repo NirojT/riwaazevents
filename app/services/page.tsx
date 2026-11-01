@@ -10,15 +10,7 @@ import {
 export const metadata: Metadata = {
   title: "Our Services | Riwaaj Events Nepal - Everything Your Celebration Needs",
   description:
-    "Explore full-service event management by Riwaaj Events across Nepal. From bespoke wedding planning, floral architecture, and marquee design to catering and luxury production.",
-  keywords: [
-    "Riwaaj Events Services",
-    "Wedding Planning Services Nepal",
-    "Event Management Itahari Kathmandu",
-    "Bespoke Wedding Decorators Nepal",
-    "Floral Design Nepal",
-    "Catering Hospitality Nepal",
-  ],
+    "Weddings, engagements, anniversaries, birthdays and pasni, with decoration, tents and catering, photography, makeup and mehendi, sound and lights, concerts and artist management — Riwaaj Events, Nepal.",
 };
 
 export default function ServicesPage() {

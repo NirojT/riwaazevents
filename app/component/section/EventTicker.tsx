@@ -1,6 +1,4 @@
-"use client";
 
-import React from "react";
 import { tickerItems } from "../../data/ticker";
 
 export default function EventTicker() {
@@ -21,7 +19,7 @@ export default function EventTicker() {
             {/* Elegant Gold Diamond Ornament */}
             <span
               aria-hidden="true"
-              className="text-primary text-[9px] md:text-xs tracking-widest select-none scale-90"
+              className="text-gold text-[9px] md:text-xs tracking-widest select-none scale-90"
             >
               ◆
             </span>

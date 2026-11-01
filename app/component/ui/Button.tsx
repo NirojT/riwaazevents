@@ -31,7 +31,7 @@ export default function Button({
 
   // Base styles: luxury tracked uppercase, transition (no bold/extrabold)
   const baseStyles =
-    "inline-flex items-center justify-center font-sans uppercase font-medium transition-all duration-300 select-none cursor-pointer focus:outline-none";
+    "inline-flex items-center justify-center font-body uppercase font-medium transition-all duration-300 select-none cursor-pointer focus:outline-none";
 
   // Variant & Theme mappings using canonical theme utilities
   let variantStyles = "";
@@ -49,7 +49,7 @@ export default function Button({
       "bg-maroon text-white-text hover:bg-maroon-light active:scale-[0.99] shadow-sm";
   } else if (variant === "gold") {
     variantStyles =
-      "bg-primary text-charcoal hover:bg-gold-light font-semibold tracking-[0.2em]";
+      "bg-gold text-charcoal hover:bg-gold-light font-semibold tracking-[0.2em]";
   } else if (variant === "ghost") {
     variantStyles =
       theme === "dark"

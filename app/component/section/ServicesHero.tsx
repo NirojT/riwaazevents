@@ -1,6 +1,4 @@
-"use client";
 
-import React from "react";
 import AboutHero from "./AboutHero";
 
 export interface ServicesHeroProps {
@@ -18,7 +16,7 @@ export default function ServicesHero({
   titleLine1 = "Everything your celebration needs.",
   titleLine2 = "One team to bring it together.",
   subtitle = "",
-  imageSrc = "/assets/aboutus.webp",
+  imageSrc = "/site/assets/aboutus.webp",
   imageAlt = "Riwaaj Events Luxury Ballroom Services",
   className = "",
 }: ServicesHeroProps) {

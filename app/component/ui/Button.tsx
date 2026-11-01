@@ -31,7 +31,7 @@ export default function Button({
 
   // Base styles: luxury tracked uppercase, transition with modern rounded-sm radius
   const baseStyles =
-    "inline-flex items-center justify-center font-sans uppercase font-medium rounded-sm transition-all duration-300 select-none cursor-pointer focus:outline-none";
+    "inline-flex items-center justify-center font-body uppercase font-medium rounded-sm transition-all duration-300 select-none cursor-pointer focus:outline-none";
 
   // Variant & Theme mappings using canonical theme utilities
   let variantStyles = "";

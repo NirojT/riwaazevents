@@ -61,38 +61,29 @@ html.lenis body {
   pointer-events: none;
 }
 
-/* Typography hierarchy: Cormorant Garamond Semibold for headings, Medium for descriptions */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-cormorant), Georgia, serif;
+.site :where(h1, h2, h3, h4, h5, h6),
+.site :where(.font-heading, .font-desc) {
+  font-family: var(--font-editorial);
   font-weight: 400;
 }
 
-.font-heading {
-  font-family: var(--font-cormorant), Georgia, serif;
-  font-weight: 400;
+.site :where(.font-display) {
+  font-family: var(--font-display);
 }
 
-.font-desc {
-  font-family: var(--font-cormorant), Georgia, serif;
-  font-weight: 400;
+.site :where(.font-editorial) {
+  font-family: var(--font-editorial);
 }
 
-/* Custom luxury smooth scroll and typography utilities */
-.font-serif {
-  font-family: var(--font-cinzel), serif;
+.site :where(.font-body) {
+  font-family: var(--font-body);
 }
 
-.font-editorial {
-  font-family: var(--font-cormorant), Georgia, serif;
-}
-
-.font-sans {
-  font-family: var(--font-montserrat), sans-serif;
+/* The page behind the site, so overscroll shows ivory. */
+html.site-root,
+html.site-root body {
+  background-color: var(--color-ivory);
+  color-scheme: light;
 }
 
 /* Infinite marquee (EventTicker). */

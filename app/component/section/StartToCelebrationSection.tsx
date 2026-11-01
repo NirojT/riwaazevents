@@ -97,7 +97,7 @@ export default function StartToCelebrationSection() {
                         if (pos >= 2) next();
                       }}
                       className={`
-                        relative shrink-0 overflow-hidden rounded-2xl bg-charcoal
+                        relative shrink-0 overflow-hidden rounded-sm bg-charcoal
                         transition-all duration-500 ease-out
                         h-87.5 sm:h-95 md:h-100 lg:h-103.75
                         ${isActive
@@ -117,7 +117,7 @@ export default function StartToCelebrationSection() {
 
                       {isActive && (
                         <>
-                          <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/30 to-transparent z-10 pointer-events-none rounded-2xl" />
+                          <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/30 to-transparent z-10 pointer-events-none rounded-sm" />
                           <div className="absolute inset-x-0 bottom-0 z-20 p-4 sm:p-5 md:p-6 pointer-events-none">
                             <p className="font-editorial text-base sm:text-lg md:text-xl text-white font-semibold leading-snug tracking-wide">
                               {item.title}
@@ -130,7 +130,7 @@ export default function StartToCelebrationSection() {
                       )}
 
                       {!isActive && (
-                        <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors z-10 pointer-events-none rounded-2xl" />
+                        <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors z-10 pointer-events-none rounded-sm" />
                       )}
                     </div>
                   );

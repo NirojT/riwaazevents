@@ -42,29 +42,57 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.site :where(h1, h2, h3, h4, h5, h6),
-.site :where(.font-heading, .font-desc) {
-  font-family: var(--font-editorial);
+/* Lenis smooth scroll: let <html> grow with the page so Lenis sees height changes
+   (the h-full on <html> otherwise freezes its scroll limit mid-page) */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Typography hierarchy: Cormorant Garamond Semibold for headings, Medium for descriptions */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-cormorant), Georgia, serif;
   font-weight: 400;
 }
 
-.site :where(.font-display) {
-  font-family: var(--font-display);
+.font-heading {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 400;
 }
 
-.site :where(.font-editorial) {
-  font-family: var(--font-editorial);
+.font-desc {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 400;
 }
 
-.site :where(.font-body) {
-  font-family: var(--font-body);
+/* Custom luxury smooth scroll and typography utilities */
+.font-serif {
+  font-family: var(--font-cinzel), serif;
 }
 
-/* The page behind the site, so overscroll shows ivory. */
-html.site-root,
-html.site-root body {
-  background-color: var(--color-ivory);
-  color-scheme: light;
+.font-editorial {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+.font-sans {
+  font-family: var(--font-montserrat), sans-serif;
 }
 
 /* Infinite marquee (EventTicker). */
